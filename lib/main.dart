@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 
 void main() {
@@ -19,18 +21,22 @@ class _HomeScreenState extends State<HomeScreen> {
         body: CustomScrollView(
           slivers: [
             SliverAppBar(
-              flexibleSpace: FlexibleSpaceBar(
-                title: Text("第 56 屆全國技能競賽"),
-                background: Image.asset("assets/bg.png"),
+              flexibleSpace: LayoutBuilder(
+                builder: (context, box) {
+                  return FlexibleSpaceBar(
+                    title: Opacity(
+                      opacity: ((224 - box.biggest.height) / 144.0),
+                      child: Text("第 56 屆全國技能競賽"),
+                    ),
+                    centerTitle: true,
+                    background: Image.asset("assets/bg.png"),
+                  );
+                },
               ),
               pinned: true,
-              centerTitle: true,
-              expandedHeight: 200,
+              expandedHeight: 190,
             ),
-            SliverList.builder(
-              itemBuilder: (context, i) => ListTile(title: Text(i.toString())),
-              itemCount: 100,
-            ),
+            SliverToBoxAdapter(child: Card(child: Text("data"))),
           ],
         ),
       ),
