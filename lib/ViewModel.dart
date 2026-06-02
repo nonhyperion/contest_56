@@ -3,6 +3,11 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'News.dart';
+import 'dart:convert';
+
+import 'package:flutter/services.dart';
+
+import 'News.dart';
 
 class ViewModel {
   ViewModel._();

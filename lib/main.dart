@@ -107,8 +107,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: SizedBox(
-                      width: 1000,
-                      height: 200,
+                      width: 10000,
+                      height: 230,
                       child: PageView.builder(
                         onPageChanged: (i) {
                           setState(() {});
@@ -128,7 +128,6 @@ class _HomeScreenState extends State<HomeScreen> {
                                 1.0,
                               );
                             }
-
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Transform.scale(
@@ -137,9 +136,60 @@ class _HomeScreenState extends State<HomeScreen> {
                                   borderRadius: BorderRadiusGeometry.circular(
                                     15,
                                   ),
-                                  child: Image.asset(
-                                    news[i].image,
-                                    fit: BoxFit.fill,
+                                  child: Stack(
+                                    children: [
+                                      SizedBox(
+                                        width: 1000,
+                                        height: 230,
+                                        child: Image.asset(
+                                          news[i].image,
+                                          fit: BoxFit.cover,
+                                        ),
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(10.0),
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                news[i].title,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.w600,
+                                                ),
+                                              ),
+                                              Text(
+                                                news[i].summary,
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                  fontSize: 13,
+                                                ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Icon(
+                                                    Icons.calendar_month,
+                                                    color: Colors.grey,
+                                                    size: 16,
+                                                  ),
+                                                  Text(
+                                                    news[i].date,
+                                                    style: TextStyle(
+                                                      color: Colors.grey,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ],
                                   ),
                                 ),
                               ),
