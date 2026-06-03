@@ -50,8 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           Align(
                             alignment: Alignment.center,
                             child: Opacity(
-                              opacity: ((184 - box.biggest.height) / 104.0)
-                                  .clamp(0, 1),
+                              opacity: ((184 - box.biggest.height) / 104.0).clamp(0, 1),
                               child: Text("第 56 屆全國技能競賽"),
                             ),
                           ),
@@ -73,10 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         ],
                       ),
                       centerTitle: true,
-                      background: Image.asset(
-                        "assets/images/bg.png",
-                        fit: BoxFit.fill,
-                      ),
+                      background: Image.asset("assets/images/bg.png", fit: BoxFit.fill),
                     );
                   },
                 ),
@@ -89,18 +85,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     padding: const EdgeInsets.only(left: 10.0, right: 10.0),
                     child: Row(
                       children: [
-                        Icon(Icons.star_border, color: Colors.blue),
-                        Text(
-                          "今日焦點",
-                          style: TextStyle(fontWeight: FontWeight.bold),
-                        ),
+                        Icon(Icons.star, color: Colors.blue),
+                        Text("今日焦點", style: TextStyle(fontWeight: FontWeight.bold)),
                         Spacer(),
                         Text("查看全部", style: TextStyle(color: Colors.grey)),
-                        Icon(
-                          Icons.arrow_forward_ios,
-                          size: 16,
-                          color: Colors.grey,
-                        ),
+                        Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
                       ],
                     ),
                   ),
@@ -121,38 +110,28 @@ class _HomeScreenState extends State<HomeScreen> {
 
                             if (pageController.position.hasContentDimensions) {
                               double page =
-                                  pageController.page ??
-                                  pageController.initialPage.toDouble();
-                              scale = (1 - (page - i).abs() * 0.3).clamp(
-                                0.8,
-                                1.0,
-                              );
+                                  pageController.page ?? pageController.initialPage.toDouble();
+                              scale = (1 - (page - i).abs() * 0.3).clamp(0.8, 1.0);
                             }
                             return Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Transform.scale(
                                 scale: scale,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadiusGeometry.circular(
-                                    15,
-                                  ),
+                                  borderRadius: BorderRadiusGeometry.circular(15),
                                   child: Stack(
                                     children: [
                                       SizedBox(
                                         width: 1000,
                                         height: 230,
-                                        child: Image.asset(
-                                          news[i].image,
-                                          fit: BoxFit.cover,
-                                        ),
+                                        child: Image.asset(news[i].image, fit: BoxFit.cover),
                                       ),
                                       Align(
                                         alignment: Alignment.bottomLeft,
                                         child: Padding(
                                           padding: const EdgeInsets.all(10.0),
                                           child: Column(
-                                            crossAxisAlignment:
-                                                CrossAxisAlignment.start,
+                                            crossAxisAlignment: CrossAxisAlignment.start,
                                             mainAxisSize: MainAxisSize.min,
                                             children: [
                                               Text(
@@ -165,10 +144,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                               ),
                                               Text(
                                                 news[i].summary,
-                                                style: TextStyle(
-                                                  color: Colors.white,
-                                                  fontSize: 13,
-                                                ),
+                                                style: TextStyle(color: Colors.white, fontSize: 13),
                                               ),
                                               Row(
                                                 children: [
@@ -179,9 +155,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ),
                                                   Text(
                                                     news[i].date,
-                                                    style: TextStyle(
-                                                      color: Colors.grey,
-                                                    ),
+                                                    style: TextStyle(color: Colors.grey),
                                                   ),
                                                 ],
                                               ),
@@ -199,6 +173,63 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: news.length,
                       ),
                     ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    child: Row(
+                      children: [
+                        Icon(Icons.electric_bolt, color: Colors.blue),
+                        Text("快速功能", style: TextStyle(fontWeight: FontWeight.bold)),
+                        Spacer(),
+                        Text("查看全部", style: TextStyle(color: Colors.grey)),
+                        Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                      ],
+                    ),
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            height: 60,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
+                                gradient: LinearGradient(
+                                  colors: [Colors.blue, Color(0xff1b73b8)],
+                                  stops: [0.8, 1],
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                ),
+                              ),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [Text("data")],
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SizedBox(
+                            child: Container(
+                              decoration: BoxDecoration(
+                                gradient: LinearGradient(
+                                  colors: [Colors.blue, Colors.blueAccent],
+                                  begin: Alignment.topRight,
+                                  end: Alignment.bottomLeft,
+                                ),
+                              ),
+                              child: Text("data"),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ],
               ),
