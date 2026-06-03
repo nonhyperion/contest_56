@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'dart:math';
 
 import 'package:contest_56/ViewModel.dart';
 import 'package:flutter/material.dart';
@@ -191,22 +192,45 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 8.0, right: 4.0, top: 8.0),
                           child: SizedBox(
                             height: 60,
                             child: Container(
                               decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(15),
                                 gradient: LinearGradient(
-                                  colors: [Colors.blue, Color(0xff1b73b8)],
-                                  stops: [0.8, 1],
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
+                                  colors: [Colors.blue[200]!, Colors.blue, Color(0xff1b73b8)],
+                                  transform: GradientRotation(90 * (pi / 180)),
                                 ),
                               ),
                               child: Row(
                                 mainAxisAlignment: MainAxisAlignment.center,
-                                children: [Text("data")],
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Icon(Icons.emoji_events, color: Colors.yellow, size: 40),
+                                  ),
+                                  Text(
+                                    "成績競賽\n排行榜",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.5),
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                  ),
+                                ],
                               ),
                             ),
                           ),
@@ -214,17 +238,50 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Expanded(
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.only(left: 4.0, right: 8.0, top: 8.0),
                           child: SizedBox(
+                            height: 60,
                             child: Container(
                               decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(15),
                                 gradient: LinearGradient(
-                                  colors: [Colors.blue, Colors.blueAccent],
-                                  begin: Alignment.topRight,
-                                  end: Alignment.bottomLeft,
+                                  colors: [
+                                    Colors.purple[200]!,
+                                    Colors.purple[300]!,
+                                    Colors.purple[600]!,
+                                  ],
+                                  transform: GradientRotation(90 * (pi / 180)),
                                 ),
                               ),
-                              child: Text("data"),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 8.0),
+                                    child: Icon(Icons.history, color: Colors.yellow, size: 40),
+                                  ),
+                                  Text(
+                                    "歷史賽事\n回顧",
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(left: 20.0),
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white.withOpacity(0.5),
+                                        borderRadius: BorderRadius.circular(100),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(3.0),
+                                        child: Icon(Icons.arrow_forward_ios, size: 20),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                           ),
                         ),
