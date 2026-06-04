@@ -38,8 +38,9 @@ class _HomeScreenState extends State<HomeScreen> {
     return MaterialApp(
       home: Scaffold(
         body: DecoratedBox(
-          decoration: BoxDecoration(color: Colors.white),
+          decoration: BoxDecoration(color: Colors.grey.shade50),
           child: CustomScrollView(
+            cacheExtent: 1,
             slivers: [
               SliverAppBar(
                 flexibleSpace: LayoutBuilder(
@@ -61,7 +62,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               height: 10,
                               child: Container(
                                 decoration: BoxDecoration(
-                                  color: Colors.white,
+                                  color: Colors.grey.shade50,
                                   borderRadius: BorderRadius.only(
                                     topRight: Radius.circular(10),
                                     topLeft: Radius.circular(10),
@@ -176,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 10.0, right: 10.0),
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10),
                     child: Row(
                       children: [
                         Icon(Icons.electric_bolt, color: Colors.blue),
@@ -288,7 +289,87 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10),
+                    child: Row(
+                      children: [
+                        Icon(Icons.list_alt, color: Colors.blue),
+                        Text("最新消息", style: TextStyle(fontWeight: FontWeight.bold)),
+                        Spacer(),
+                        Text("查看全部", style: TextStyle(color: Colors.grey)),
+                        Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey),
+                      ],
+                    ),
+                  ),
                 ],
+              ),
+              SliverList.builder(
+                itemBuilder: (context, i) => TweenAnimationBuilder(
+                  tween: Tween(begin: 0.0, end: 1.0),
+                  duration: Duration(milliseconds: 700),
+                  curve: Curves.easeInOut,
+                  builder: (BuildContext context, double value, Widget? child) =>
+                      FractionalTranslation(
+                        translation: Offset(1 - value, 0),
+                        child: SizedBox(
+                          width: 500,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0, right: 8),
+                            child: Card(
+                              color: Colors.white,
+                              child: Padding(
+                                padding: const EdgeInsets.all(3.0),
+                                child: Row(
+                                  children: [
+                                    SizedBox(
+                                      height: 70,
+                                      width: 70 * (768 / 512),
+                                      child: ClipRRect(
+                                        borderRadius: BorderRadius.circular(12),
+                                        child: Image.asset(news[i].image, fit: BoxFit.cover),
+                                      ),
+                                    ),
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment: CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              news[i].title,
+                                              style: TextStyle(fontWeight: FontWeight.bold),
+                                            ),
+                                            Text(
+                                              news[i].summary,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.calendar_month,
+                                                  color: Colors.grey,
+                                                  size: 16,
+                                                ),
+                                                Text(
+                                                  news[i].date,
+                                                  style: TextStyle(color: Colors.grey),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                ),
+                itemCount: news.length,
               ),
             ],
           ),
