@@ -12,7 +12,7 @@ class _RankingScreenState extends State<RankingScreen> {
   Widget build(BuildContext context) {
     return Hero(
       tag: "rank",
-      child: Scaffold(body: Column()),
+      child: Scaffold(body: Column(children: [Text("dsfsdfds")])),
     );
   }
 }

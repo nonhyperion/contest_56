@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:contest_56/FastActionButton.dart';
 import 'package:contest_56/RankingScreen.dart';
 import 'package:contest_56/TodayFocusScreen.dart';
@@ -50,7 +48,10 @@ class _HomeScreenState extends State<HomeScreen> {
                       Align(
                         alignment: Alignment.center,
                         child: Opacity(
-                          opacity: ((184 - box.biggest.height) / 104.0).clamp(0, 1),
+                          opacity: ((184 - box.biggest.height) / 104.0).clamp(
+                            0,
+                            1,
+                          ),
                           child: Text("第 56 屆全國技能競賽"),
                         ),
                       ),
@@ -72,7 +73,10 @@ class _HomeScreenState extends State<HomeScreen> {
                     ],
                   ),
                   centerTitle: true,
-                  background: Image.asset("assets/images/bg.png", fit: BoxFit.fill),
+                  background: Image.asset(
+                    "assets/images/bg.png",
+                    fit: BoxFit.fill,
+                  ),
                 );
               },
             ),
@@ -110,14 +114,18 @@ class _HomeScreenState extends State<HomeScreen> {
 
                         if (pageController.position.hasContentDimensions) {
                           double page =
-                              pageController.page ?? pageController.initialPage.toDouble();
+                              pageController.page ??
+                              pageController.initialPage.toDouble();
                           scale = (1 - (page - i).abs() * 0.3).clamp(0.8, 1.0);
                         }
                         return GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
                               MaterialPageRoute(
-                                builder: (c) => TodayFocusScreen(imagePath: news[i].image),
+                                builder: (c) => TodayFocusScreen(
+                                  news: news[i],
+                                  tag: news[i].image,
+                                ),
                               ),
                             );
                           },
@@ -128,7 +136,9 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: Hero(
                                 tag: news[i].image,
                                 child: ClipRRect(
-                                  borderRadius: BorderRadiusGeometry.circular(15),
+                                  borderRadius: BorderRadiusGeometry.circular(
+                                    15,
+                                  ),
                                   child: Material(
                                     color: Colors.transparent,
                                     child: Stack(
@@ -136,14 +146,18 @@ class _HomeScreenState extends State<HomeScreen> {
                                         SizedBox(
                                           width: 1000,
                                           height: 230,
-                                          child: Image.asset(news[i].image, fit: BoxFit.fill),
+                                          child: Image.asset(
+                                            news[i].image,
+                                            fit: BoxFit.fill,
+                                          ),
                                         ),
                                         Align(
                                           alignment: Alignment.bottomLeft,
                                           child: Padding(
                                             padding: const EdgeInsets.all(10.0),
                                             child: Column(
-                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               mainAxisSize: MainAxisSize.min,
                                               children: [
                                                 Text(
@@ -170,7 +184,9 @@ class _HomeScreenState extends State<HomeScreen> {
                                                     ),
                                                     Text(
                                                       news[i].date,
-                                                      style: TextStyle(color: Colors.grey),
+                                                      style: TextStyle(
+                                                        color: Colors.grey,
+                                                      ),
                                                     ),
                                                   ],
                                                 ),
@@ -193,7 +209,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10),
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                  bottom: 10,
+                ),
                 child: Row(
                   children: [
                     Icon(Icons.electric_bolt, color: Colors.blue),
@@ -209,20 +229,26 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+                      padding: const EdgeInsets.only(left: 10.0, right: 5.0),
                       child: Hero(
                         tag: "rank",
                         child: Material(
                           color: Colors.transparent,
                           child: FastActionButton(
                             onClick: () {
-                              Navigator.of(
-                                context,
-                              ).push(MaterialPageRoute(builder: (context) => RankingScreen()));
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => RankingScreen(),
+                                ),
+                              );
                             },
                             icon: Icons.emoji_events,
                             text: "成績競賽\n排行榜",
-                            colors: [Colors.blue[200]!, Colors.blue, Color(0xff1b73b8)],
+                            colors: [
+                              Colors.blue[200]!,
+                              Colors.blue,
+                              Color(0xff1b73b8),
+                            ],
                           ),
                         ),
                       ),
@@ -230,19 +256,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   Expanded(
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 8.0, right: 4.0),
+                      padding: const EdgeInsets.only(left: 10.0, right: 5.0),
                       child: FastActionButton(
                         onClick: () {},
                         icon: Icons.history,
                         text: "歷屆賽事\n回顧",
-                        colors: [Colors.purple[200]!, Colors.purple[300]!, Colors.purple[600]!],
+                        colors: [
+                          Colors.purple[200]!,
+                          Colors.purple[300]!,
+                          Colors.purple[600]!,
+                        ],
                       ),
                     ),
                   ),
                 ],
               ),
               Padding(
-                padding: const EdgeInsets.only(left: 10.0, right: 10.0, top: 10),
+                padding: const EdgeInsets.only(
+                  left: 10.0,
+                  right: 10.0,
+                  top: 10,
+                ),
                 child: Row(
                   children: [
                     Icon(Icons.list_alt, color: Colors.blue),
@@ -260,58 +294,94 @@ class _HomeScreenState extends State<HomeScreen> {
               tween: Tween(begin: 0.0, end: 1.0),
               duration: Duration(milliseconds: 700),
               curve: Curves.easeInOut,
-              builder: (BuildContext context, double value, Widget? child) => FractionalTranslation(
-                translation: Offset(1 - value, 0),
-                child: SizedBox(
-                  width: 500,
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 8.0, right: 8),
-                    child: Card(
-                      color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.all(3.0),
-                        child: Row(
-                          children: [
-                            SizedBox(
-                              height: 70,
-                              width: 70 * (768 / 512),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: Image.asset(news[i].image, fit: BoxFit.cover),
-                              ),
+              builder: (BuildContext context, double value, Widget? child) =>
+                  Hero(
+                    tag: news[i].id,
+                    child: GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(
+                          MaterialPageRoute(
+                            builder: (c) => TodayFocusScreen(
+                              news: news[i],
+                              tag: news[i].id,
                             ),
-                            Expanded(
+                          ),
+                        );
+                      },
+                      child: FractionalTranslation(
+                        translation: Offset(1 - value, 0),
+                        child: SizedBox(
+                          width: 500,
+                          child: Padding(
+                            padding: const EdgeInsets.only(left: 8.0, right: 8),
+                            child: Card(
+                              color: Colors.white,
                               child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                padding: const EdgeInsets.all(3.0),
+                                child: Row(
                                   children: [
-                                    Text(
-                                      news[i].title,
-                                      style: TextStyle(fontWeight: FontWeight.bold),
+                                    Padding(
+                                      padding: const EdgeInsets.all(3.0),
+                                      child: SizedBox(
+                                        height: 70,
+                                        width: 70 * (768 / 512),
+                                        child: ClipRRect(
+                                          borderRadius: BorderRadius.circular(
+                                            12,
+                                          ),
+                                          child: Image.asset(
+                                            news[i].image,
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                    Text(
-                                      news[i].summary,
-                                      maxLines: 1,
-                                      overflow: TextOverflow.ellipsis,
-                                    ),
-                                    Row(
-                                      children: [
-                                        Icon(Icons.calendar_month, color: Colors.grey, size: 16),
-                                        Text(news[i].date, style: TextStyle(color: Colors.grey)),
-                                      ],
+                                    Expanded(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(8.0),
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              news[i].title,
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                            Text(
+                                              news[i].summary,
+                                              maxLines: 1,
+                                              overflow: TextOverflow.ellipsis,
+                                            ),
+                                            Row(
+                                              children: [
+                                                Icon(
+                                                  Icons.calendar_month,
+                                                  color: Colors.grey,
+                                                  size: 16,
+                                                ),
+                                                Text(
+                                                  news[i].date,
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ],
                                 ),
                               ),
                             ),
-                          ],
+                          ),
                         ),
                       ),
                     ),
                   ),
-                ),
-              ),
             ),
             itemCount: news.length,
           ),
