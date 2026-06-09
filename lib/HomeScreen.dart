@@ -1,4 +1,5 @@
 import 'package:contest_56/FastActionButton.dart';
+import 'package:contest_56/HistoryScreen.dart';
 import 'package:contest_56/RankingScreen.dart';
 import 'package:contest_56/TodayFocusScreen.dart';
 import 'package:flutter/material.dart';
@@ -257,15 +258,27 @@ class _HomeScreenState extends State<HomeScreen> {
                   Expanded(
                     child: Padding(
                       padding: const EdgeInsets.only(left: 10.0, right: 5.0),
-                      child: FastActionButton(
-                        onClick: () {},
-                        icon: Icons.history,
-                        text: "歷屆賽事\n回顧",
-                        colors: [
-                          Colors.purple[200]!,
-                          Colors.purple[300]!,
-                          Colors.purple[600]!,
-                        ],
+                      child: Hero(
+                        tag: "history",
+                        child: Material(
+                          color: Colors.transparent,
+                          child: FastActionButton(
+                            onClick: () {
+                              Navigator.of(context).push(
+                                MaterialPageRoute(
+                                  builder: (context) => HistoryScreen(),
+                                ),
+                              );
+                            },
+                            icon: Icons.history,
+                            text: "歷屆賽事\n回顧",
+                            colors: [
+                              Colors.purple[200]!,
+                              Colors.purple[300]!,
+                              Colors.purple[600]!,
+                            ],
+                          ),
+                        ),
                       ),
                     ),
                   ),

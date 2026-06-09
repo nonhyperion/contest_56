@@ -1,12 +1,6 @@
-import 'dart:ffi';
-import 'dart:math';
-
-import 'package:contest_56/MyNavigationDestination.dart';
-import 'package:contest_56/ViewModel.dart';
 import 'package:flutter/material.dart';
 
 import 'HomeScreen.dart';
-import 'News.dart';
 
 void main() {
   runApp(MainScreen());
