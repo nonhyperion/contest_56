@@ -19,6 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<News> news = [];
   double firstScale = 1;
   double secondScale = 1;
+  Map<String, dynamic> ranking = {};
 
   @override
   void initState() {
@@ -28,6 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Future<void> init() async {
+    ranking = await ViewModel().getRanking();
     news = await ViewModel().getNews();
     setState(() {});
   }
@@ -239,7 +241,8 @@ class _HomeScreenState extends State<HomeScreen> {
                             onClick: () {
                               Navigator.of(context).push(
                                 MaterialPageRoute(
-                                  builder: (context) => RankingScreen(),
+                                  builder: (context) =>
+                                      RankingScreen(ranking: ranking),
                                 ),
                               );
                             },

@@ -22,4 +22,11 @@ class ViewModel {
     );
     return json.map((i) => News.FromJson(i)).toList();
   }
+
+  Future<Map<String, dynamic>> getRanking() async {
+    Map<String, dynamic> json = jsonDecode(
+      await rootBundle.loadString("assets/competition_rankings.json"),
+    );
+    return json;
+  }
 }

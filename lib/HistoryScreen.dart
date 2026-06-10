@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 class HistoryScreen extends StatefulWidget {
@@ -17,7 +19,10 @@ class _HistoryScreenState extends State<HistoryScreen> {
         appBar: AppBar(
           backgroundColor: Color(0xff051632),
           centerTitle: true,
-          title: Text("歷屆賽事回顧", style: TextStyle(color: Colors.white, fontSize: 20)),
+          title: Text(
+            "歷屆賽事回顧",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
           leadingWidth: 65,
           leading: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -55,7 +60,11 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       stops: [0.2, 0.8, 1],
-                      colors: [Colors.transparent, Color(0xff051632), Color(0xff051632)],
+                      colors: [
+                        Colors.transparent,
+                        Color(0xff051632),
+                        Color(0xff051632),
+                      ],
                     ),
                   ),
                 ),
@@ -138,7 +147,53 @@ class HistoryCard extends StatefulWidget {
   State<HistoryCard> createState() => _HistoryCardState();
 }
 
-class _HistoryCardState extends State<HistoryCard> {
+class _HistoryCardState extends State<HistoryCard>
+    with TickerProviderStateMixin {
+  late AnimationController animationController;
+  late Animation<Offset> animation;
+  late AnimationController sweepAnimationController;
+  late Animation<double> sweepAnimation;
+
+  @override
+  void initState() {
+    animationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    animation = Tween(begin: Offset(0, 4), end: Offset(0, 0)).animate(
+      CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
+    );
+    sweepAnimationController = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 10),
+    );
+    sweepAnimation = Tween(begin: 0.0, end: 0.5).animate(
+      CurvedAnimation(
+        parent: sweepAnimationController,
+        curve: Curves.easeInOut,
+      ),
+    );
+
+    play();
+    super.initState();
+  }
+
+  Future<void> play() async {
+    await Future.delayed(
+      Duration(milliseconds: (56 - int.parse(widget.th)) * 300),
+    );
+    if (!mounted) return;
+    animationController.forward();
+    await Future.delayed(Duration(seconds: 1));
+    sweepAnimationController.repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -156,14 +211,18 @@ class _HistoryCardState extends State<HistoryCard> {
                       Flexible(
                         flex: 1,
                         child: VerticalDivider(
-                          color: widget.isFirst == true ? Colors.transparent : Colors.grey,
+                          color: widget.isFirst == true
+                              ? Colors.transparent
+                              : Colors.grey,
                           thickness: 1.8,
                         ),
                       ),
                       Flexible(
                         flex: 1,
                         child: VerticalDivider(
-                          color: widget.isLast == true ? Colors.transparent : Colors.grey,
+                          color: widget.isLast == true
+                              ? Colors.transparent
+                              : Colors.grey,
                           thickness: 1.8,
                         ),
                       ),
@@ -208,90 +267,138 @@ class _HistoryCardState extends State<HistoryCard> {
                 ],
               ),
             ),
-            TweenAnimationBuilder(
-              duration: Duration(seconds: 1),
-              tween: Tween(begin: 10.0, end: 0.0),
-              builder: (c, v, _) => FractionalTranslation(
-                translation: Offset(0, v),
-                child: Padding(
-                  padding: const EdgeInsets.only(right: 8.0, top: 16.0),
-                  child: SizedBox(
-                    width: 340,
-                    height: 100,
-                    child: SizedBox(
-                      width: 500,
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 8.0, right: 8),
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Color(0xff0D1A34),
-                            border: BoxBorder.all(color: Color(0xff102143), width: 1),
-                            borderRadius: BorderRadius.circular(15),
+            SlideTransition(
+              position: animation,
+              child: Padding(
+                padding: const EdgeInsets.only(right: 8.0, top: 16.0),
+                child: SizedBox(
+                  width: 342,
+                  height: 102,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8.0, right: 8),
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        if (widget.isFirst == true)
+                          AnimatedBuilder(
+                            animation: sweepAnimation,
+                            builder: (c, _) => Container(
+                              decoration: BoxDecoration(
+                                gradient: SweepGradient(
+                                  colors: [
+                                    Colors.white,
+                                    Colors.yellow,
+                                    Colors.white,
+                                    Colors.yellow,
+                                  ],
+                                  stops: [0, 0.25, 0.75, 1]
+                                      .map((i) => i + sweepAnimation.value)
+                                      .toList(),
+                                ),
+                                borderRadius: BorderRadius.circular(17),
+                              ),
+                            ),
                           ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                            child: Row(
-                              children: [
-                                Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text.rich(
-                                      TextSpan(
-                                        text: "第",
+                        Padding(
+                          padding: const EdgeInsets.all(2.0),
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xff0D1A34),
+                              border: widget.isFirst == true
+                                  ? null
+                                  : BoxBorder.all(
+                                      color: Color(0xff102143),
+                                      width: 1,
+                                    ),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                horizontal: 8.0,
+                              ),
+                              child: Row(
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text.rich(
+                                        TextSpan(
+                                          text: "第",
+                                          children: [
+                                            TextSpan(
+                                              text: widget.th,
+                                              style: TextStyle(fontSize: 25),
+                                            ),
+                                            TextSpan(text: "屆"),
+                                          ],
+                                        ),
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      Container(
+                                        decoration: BoxDecoration(
+                                          color: Color(0xff1939AD),
+                                          borderRadius: BorderRadius.circular(
+                                            5,
+                                          ),
+                                        ),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 6,
+                                          ),
+                                          child: Text(
+                                            widget.year,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 12,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      Row(
                                         children: [
-                                          TextSpan(text: widget.th, style: TextStyle(fontSize: 25)),
-                                          TextSpan(text: "屆"),
+                                          Icon(
+                                            Icons.location_on_outlined,
+                                            color: Colors.grey,
+                                            size: 16,
+                                          ),
+                                          Text(
+                                            widget.location,
+                                            style: TextStyle(
+                                              color: Colors.grey,
+                                            ),
+                                          ),
                                         ],
                                       ),
-                                      style: TextStyle(color: Colors.white),
-                                    ),
-                                    Container(
-                                      decoration: BoxDecoration(
-                                        color: Color(0xff1939AD),
-                                        borderRadius: BorderRadius.circular(5),
-                                      ),
-                                      child: Padding(
-                                        padding: const EdgeInsets.symmetric(horizontal: 6),
-                                        child: Text(
-                                          widget.year,
-                                          style: TextStyle(color: Colors.white, fontSize: 12),
-                                        ),
+                                    ],
+                                  ),
+                                  Flexible(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        widget.content,
+                                        style: TextStyle(color: Colors.white),
                                       ),
                                     ),
-                                    Row(
-                                      children: [
-                                        Icon(
-                                          Icons.location_on_outlined,
-                                          color: Colors.grey,
-                                          size: 16,
-                                        ),
-                                        Text(widget.location, style: TextStyle(color: Colors.grey)),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                Flexible(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      widget.content,
-                                      style: TextStyle(color: Colors.white),
+                                  ),
+                                  SizedBox(
+                                    height: 70,
+                                    width: 100,
+                                    child: ClipRRect(
+                                      borderRadius:
+                                          BorderRadiusGeometry.circular(10),
+                                      child: Image.asset(
+                                        widget.image,
+                                        fit: BoxFit.cover,
+                                      ),
                                     ),
                                   ),
-                                ),
-                                SizedBox(
-                                  height: 70,
-                                  width: 100,
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadiusGeometry.circular(10),
-                                    child: Image.asset(widget.image, fit: BoxFit.cover),
-                                  ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

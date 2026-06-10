@@ -1,0 +1,292 @@
+{
+  "competitionNo": 56,
+  "competitionName": "第56屆全國技能競賽",
+  "updatedAt": "2026/05/21 18:00",
+  "medalTotals": {
+    "gold": 35,
+    "silver": 36,
+    "bronze": 32,
+    "total": 103
+  },
+  "rankings": [
+    {
+      "rank": 1,
+      "unitId": "taipei",
+      "unitName": "臺北市",
+      "cityIcon": "assets/images/city_taipei.png",
+      "gold": 8,
+      "silver": 5,
+      "bronze": 3,
+      "total": 16,
+      "description": "臺北市長期重視技職教育發展，培育優秀技能人才，在全國技能競賽中表現亮眼。",
+      "winners": [
+        {
+          "name": "王小明",
+          "school": "臺北市立松山工農",
+          "skill": "機器人整合應用",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_01.png"
+        },
+        {
+          "name": "林佳穎",
+          "school": "臺北市立大安高工",
+          "skill": "烘焙競賽",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_02.png"
+        },
+        {
+          "name": "陳柏宇",
+          "school": "臺北市立木柵高工",
+          "skill": "CNC車床",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_03.png"
+        },
+        {
+          "name": "黃子恩",
+          "school": "臺北市立內湖高工",
+          "skill": "程式設計競賽",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_04.png"
+        },
+        {
+          "name": "張雅婷",
+          "school": "臺北市立南港高工",
+          "skill": "電機控制",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_05.png"
+        },
+        {
+          "name": "劉宇哲",
+          "school": "臺北市立大安高工",
+          "skill": "資訊與網路技術",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_06.png"
+        },
+        {
+          "name": "曾品蓉",
+          "school": "臺北市立士林高商",
+          "skill": "美容競賽",
+          "medal": "bronze",
+          "avatar": "assets/images/contestant_07.png"
+        }
+      ]
+    },
+    {
+      "rank": 2,
+      "unitId": "new_taipei",
+      "unitName": "新北市",
+      "cityIcon": "assets/images/city_new_taipei.png",
+      "gold": 6,
+      "silver": 4,
+      "bronze": 5,
+      "total": 15,
+      "description": "新北市參賽選手在機械、設計與服務類職種均有穩定表現，展現多元技能培育成果。",
+      "winners": [
+        {
+          "name": "李冠廷",
+          "school": "新北市立新北高工",
+          "skill": "工業配線",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_08.png"
+        },
+        {
+          "name": "周怡君",
+          "school": "新北市立淡水商工",
+          "skill": "餐飲服務",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_09.png"
+        },
+        {
+          "name": "許哲維",
+          "school": "新北市立樟樹國際實中",
+          "skill": "網頁技術",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_10.png"
+        },
+        {
+          "name": "吳采潔",
+          "school": "新北市立瑞芳高工",
+          "skill": "視覺設計",
+          "medal": "bronze",
+          "avatar": "assets/images/contestant_11.png"
+        }
+      ]
+    },
+    {
+      "rank": 3,
+      "unitId": "kaohsiung",
+      "unitName": "高雄市",
+      "cityIcon": "assets/images/city_kaohsiung.png",
+      "gold": 5,
+      "silver": 6,
+      "bronze": 4,
+      "total": 15,
+      "description": "高雄市結合港灣與重工業產業特色，在機電、冷凍空調與餐飲職類展現強勁實力。",
+      "winners": [
+        {
+          "name": "鄭宇軒",
+          "school": "高雄市立高雄高工",
+          "skill": "冷凍空調",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_12.png"
+        },
+        {
+          "name": "楊欣妤",
+          "school": "高雄市立海青工商",
+          "skill": "餐飲烘焙",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_13.png"
+        },
+        {
+          "name": "蔡承恩",
+          "school": "高雄市立中正高工",
+          "skill": "汽車技術",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_14.png"
+        }
+      ]
+    },
+    {
+      "rank": 4,
+      "unitId": "taichung",
+      "unitName": "臺中市",
+      "cityIcon": "assets/images/city_taichung.png",
+      "gold": 4,
+      "silver": 5,
+      "bronze": 6,
+      "total": 15,
+      "description": "臺中市以精密機械與創新製造為發展重點，在製造與設計相關職類有突出成績。",
+      "winners": [
+        {
+          "name": "林昱辰",
+          "school": "臺中市立臺中高工",
+          "skill": "機械製圖",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_15.png"
+        },
+        {
+          "name": "郭庭安",
+          "school": "臺中市立霧峰農工",
+          "skill": "模具技術",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_16.png"
+        },
+        {
+          "name": "何品萱",
+          "school": "臺中市立沙鹿高工",
+          "skill": "平面設計技術",
+          "medal": "bronze",
+          "avatar": "assets/images/contestant_17.png"
+        }
+      ]
+    },
+    {
+      "rank": 5,
+      "unitId": "taoyuan",
+      "unitName": "桃園市",
+      "cityIcon": "assets/images/city_taoyuan.png",
+      "gold": 4,
+      "silver": 4,
+      "bronze": 4,
+      "total": 12,
+      "description": "桃園市結合航空城與智慧產業發展優勢，培養跨領域技術人才。",
+      "winners": [
+        {
+          "name": "游承翰",
+          "school": "桃園市立桃園高工",
+          "skill": "飛機修護",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_18.png"
+        },
+        {
+          "name": "陳宥蓁",
+          "school": "桃園市立中壢家商",
+          "skill": "服裝創作",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_19.png"
+        }
+      ]
+    },
+    {
+      "rank": 6,
+      "unitId": "tainan",
+      "unitName": "臺南市",
+      "cityIcon": "assets/images/city_tainan.png",
+      "gold": 3,
+      "silver": 5,
+      "bronze": 3,
+      "total": 11,
+      "description": "臺南市在文化創意、餐飲服務與精密技術職類展現穩健培育成果。",
+      "winners": [
+        {
+          "name": "洪子晴",
+          "school": "臺南市立臺南高商",
+          "skill": "商務軟體設計",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_20.png"
+        },
+        {
+          "name": "蘇柏翰",
+          "school": "國立臺南高工",
+          "skill": "電機裝配",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_21.png"
+        }
+      ]
+    },
+    {
+      "rank": 7,
+      "unitId": "wda_north",
+      "unitName": "勞動力發展署北分署",
+      "cityIcon": "assets/images/unit_wda_north.png",
+      "gold": 3,
+      "silver": 4,
+      "bronze": 3,
+      "total": 10,
+      "description": "北分署投入職訓能量與產業合作，協助青年強化就業技能與競賽實力。",
+      "winners": [
+        {
+          "name": "羅明哲",
+          "school": "北分署職訓中心",
+          "skill": "銲接",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_22.png"
+        },
+        {
+          "name": "宋雅文",
+          "school": "北分署職訓中心",
+          "skill": "室內設計",
+          "medal": "silver",
+          "avatar": "assets/images/contestant_23.png"
+        }
+      ]
+    },
+    {
+      "rank": 8,
+      "unitId": "wda_central",
+      "unitName": "勞動力發展署中彰投分署",
+      "cityIcon": "assets/images/unit_wda_central.png",
+      "gold": 2,
+      "silver": 3,
+      "bronze": 4,
+      "total": 9,
+      "description": "中彰投分署整合區域產業資源，強化精密加工、自動控制與服務職能培訓。",
+      "winners": [
+        {
+          "name": "邱家豪",
+          "school": "中彰投分署職訓中心",
+          "skill": "自動控制",
+          "medal": "gold",
+          "avatar": "assets/images/contestant_24.png"
+        },
+        {
+          "name": "葉欣怡",
+          "school": "中彰投分署職訓中心",
+          "skill": "美髮競賽",
+          "medal": "bronze",
+          "avatar": "assets/images/contestant_25.png"
+        }
+      ]
+    }
+  ]
+}
