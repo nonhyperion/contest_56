@@ -10,6 +10,21 @@ class HistoryScreen extends StatefulWidget {
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
+  bool isDone = false;
+
+  @override
+  void initState() {
+    timer();
+    // TODO: implement initState
+    super.initState();
+  }
+
+  void timer() {
+    Future.delayed(Duration(milliseconds: 200));
+    isDone = true;
+    setState(() {});
+  }
+
   @override
   Widget build(BuildContext context) {
     return Hero(
@@ -19,10 +34,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
         appBar: AppBar(
           backgroundColor: Color(0xff051632),
           centerTitle: true,
-          title: Text(
-            "歷屆賽事回顧",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
+          title: Text("歷屆賽事回顧", style: TextStyle(color: Colors.white, fontSize: 20)),
           leadingWidth: 65,
           leading: Padding(
             padding: const EdgeInsets.only(left: 8.0),
@@ -60,11 +72,7 @@ class _HistoryScreenState extends State<HistoryScreen> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                       stops: [0.2, 0.8, 1],
-                      colors: [
-                        Colors.transparent,
-                        Color(0xff051632),
-                        Color(0xff051632),
-                      ],
+                      colors: [Colors.transparent, Color(0xff051632), Color(0xff051632)],
                     ),
                   ),
                 ),
@@ -73,47 +81,49 @@ class _HistoryScreenState extends State<HistoryScreen> {
             Padding(
               padding: const EdgeInsets.only(top: 150.0),
               child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    HistoryCard(
-                      year: "2026",
-                      th: "56",
-                      location: "臺北",
-                      content: "全國技能好手齊聚臺北,展現新世代技職能量。",
-                      isFirst: true,
-                      image: 'assets/images/focus_opening_stage_luxury.png',
-                    ),
-                    HistoryCard(
-                      year: "2025",
-                      th: "55",
-                      location: "新北",
-                      content: "聚焦技能傳承與產業接軌,展現青年專業實力。",
-                      image: 'assets/images/news_thumb_01_machine_luxury.png',
-                    ),
-                    HistoryCard(
-                      year: "2024",
-                      th: "54",
-                      location: "臺北",
-                      content: "以創新技術與跨域整合為主軸,呈現技職教育成果。",
-                      image: 'assets/images/news_thumb_03_expo_luxury.png',
-                    ),
-                    HistoryCard(
-                      year: "2023",
-                      th: "53",
-                      location: "高雄",
-                      content: "南臺灣技能競技盛會,帶動城市產業交流。",
-                      image: 'assets/images/news_thumb_04_robot_luxury.png',
-                    ),
-                    HistoryCard(
-                      year: "2022",
-                      th: "52",
-                      location: "臺中",
-                      content: "多元職類交流與成果展示,見證技能人才培育成果。",
-                      isLast: true,
-                      image: 'assets/images/schedule_calendar.png',
-                    ),
-                  ],
-                ),
+                child: isDone == true
+                    ? Column(
+                        children: [
+                          HistoryCard(
+                            year: "2026",
+                            th: "56",
+                            location: "臺北",
+                            content: "全國技能好手齊聚臺北,展現新世代技職能量。",
+                            isFirst: true,
+                            image: 'assets/images/focus_opening_stage_luxury.png',
+                          ),
+                          HistoryCard(
+                            year: "2025",
+                            th: "55",
+                            location: "新北",
+                            content: "聚焦技能傳承與產業接軌,展現青年專業實力。",
+                            image: 'assets/images/news_thumb_01_machine_luxury.png',
+                          ),
+                          HistoryCard(
+                            year: "2024",
+                            th: "54",
+                            location: "臺北",
+                            content: "以創新技術與跨域整合為主軸,呈現技職教育成果。",
+                            image: 'assets/images/news_thumb_03_expo_luxury.png',
+                          ),
+                          HistoryCard(
+                            year: "2023",
+                            th: "53",
+                            location: "高雄",
+                            content: "南臺灣技能競技盛會,帶動城市產業交流。",
+                            image: 'assets/images/news_thumb_04_robot_luxury.png',
+                          ),
+                          HistoryCard(
+                            year: "2022",
+                            th: "52",
+                            location: "臺中",
+                            content: "多元職類交流與成果展示,見證技能人才培育成果。",
+                            isLast: true,
+                            image: 'assets/images/schedule_calendar.png',
+                          ),
+                        ],
+                      )
+                    : SizedBox.shrink(),
               ),
             ),
           ],
@@ -147,8 +157,7 @@ class HistoryCard extends StatefulWidget {
   State<HistoryCard> createState() => _HistoryCardState();
 }
 
-class _HistoryCardState extends State<HistoryCard>
-    with TickerProviderStateMixin {
+class _HistoryCardState extends State<HistoryCard> with TickerProviderStateMixin {
   late AnimationController animationController;
   late Animation<Offset> animation;
   late AnimationController sweepAnimationController;
@@ -156,36 +165,27 @@ class _HistoryCardState extends State<HistoryCard>
 
   @override
   void initState() {
-    animationController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 1),
-    );
-    animation = Tween(begin: Offset(0, 4), end: Offset(0, 0)).animate(
-      CurvedAnimation(parent: animationController, curve: Curves.easeInOut),
-    );
-    sweepAnimationController = AnimationController(
-      vsync: this,
-      duration: Duration(seconds: 10),
-    );
-    sweepAnimation = Tween(begin: 0.0, end: 0.5).animate(
-      CurvedAnimation(
-        parent: sweepAnimationController,
-        curve: Curves.easeInOut,
-      ),
-    );
+    animationController = AnimationController(vsync: this, duration: Duration(seconds: 1));
+    animation = Tween(
+      begin: Offset(0, 5),
+      end: Offset(0, 0),
+    ).animate(CurvedAnimation(parent: animationController, curve: Curves.easeInOut));
+    sweepAnimationController = AnimationController(vsync: this, duration: Duration(seconds: 10));
+    sweepAnimation = Tween(
+      begin: 0.0,
+      end: 2 * pi,
+    ).animate(CurvedAnimation(parent: sweepAnimationController, curve: Curves.easeInOut));
 
     play();
     super.initState();
   }
 
   Future<void> play() async {
-    await Future.delayed(
-      Duration(milliseconds: (56 - int.parse(widget.th)) * 300),
-    );
+    await Future.delayed(Duration(milliseconds: (56 - int.parse(widget.th)) * 300));
     if (!mounted) return;
     animationController.forward();
     await Future.delayed(Duration(seconds: 1));
-    sweepAnimationController.repeat(reverse: true);
+    sweepAnimationController.repeat();
   }
 
   @override
@@ -211,18 +211,14 @@ class _HistoryCardState extends State<HistoryCard>
                       Flexible(
                         flex: 1,
                         child: VerticalDivider(
-                          color: widget.isFirst == true
-                              ? Colors.transparent
-                              : Colors.grey,
+                          color: widget.isFirst == true ? Colors.transparent : Colors.grey,
                           thickness: 1.8,
                         ),
                       ),
                       Flexible(
                         flex: 1,
                         child: VerticalDivider(
-                          color: widget.isLast == true
-                              ? Colors.transparent
-                              : Colors.grey,
+                          color: widget.isLast == true ? Colors.transparent : Colors.grey,
                           thickness: 1.8,
                         ),
                       ),
@@ -272,30 +268,38 @@ class _HistoryCardState extends State<HistoryCard>
               child: Padding(
                 padding: const EdgeInsets.only(right: 8.0, top: 16.0),
                 child: SizedBox(
-                  width: 342,
-                  height: 102,
+                  width: 340,
+                  height: 100,
                   child: Padding(
                     padding: const EdgeInsets.only(left: 8.0, right: 8),
                     child: Stack(
                       alignment: Alignment.center,
+                      clipBehavior: Clip.none,
                       children: [
                         if (widget.isFirst == true)
-                          AnimatedBuilder(
-                            animation: sweepAnimation,
-                            builder: (c, _) => Container(
-                              decoration: BoxDecoration(
-                                gradient: SweepGradient(
-                                  colors: [
-                                    Colors.white,
-                                    Colors.yellow,
-                                    Colors.white,
-                                    Colors.yellow,
-                                  ],
-                                  stops: [0, 0.25, 0.75, 1]
-                                      .map((i) => i + sweepAnimation.value)
-                                      .toList(),
+                          ClipRRect(
+                            borderRadius: BorderRadiusGeometry.circular(17),
+                            child: AnimatedBuilder(
+                              animation: sweepAnimation,
+                              builder: (c, _) => Transform.rotate(
+                                angle: sweepAnimation.value,
+                                child: Transform.scale(
+                                  scale: 3,
+                                  child: Container(
+                                    width: 400,
+                                    height: 400,
+                                    decoration: BoxDecoration(
+                                      gradient: SweepGradient(
+                                        colors: [
+                                          Colors.white,
+                                          Colors.yellow,
+                                          Colors.white,
+                                          Colors.yellow,
+                                        ],
+                                      ),
+                                    ),
+                                  ),
                                 ),
-                                borderRadius: BorderRadius.circular(17),
                               ),
                             ),
                           ),
@@ -306,21 +310,15 @@ class _HistoryCardState extends State<HistoryCard>
                               color: Color(0xff0D1A34),
                               border: widget.isFirst == true
                                   ? null
-                                  : BoxBorder.all(
-                                      color: Color(0xff102143),
-                                      width: 1,
-                                    ),
+                                  : BoxBorder.all(color: Color(0xff102143), width: 1),
                               borderRadius: BorderRadius.circular(15),
                             ),
                             child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0,
-                              ),
+                              padding: const EdgeInsets.symmetric(horizontal: 8.0),
                               child: Row(
                                 children: [
                                   Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.start,
                                     children: [
                                       Text.rich(
                                         TextSpan(
@@ -338,20 +336,13 @@ class _HistoryCardState extends State<HistoryCard>
                                       Container(
                                         decoration: BoxDecoration(
                                           color: Color(0xff1939AD),
-                                          borderRadius: BorderRadius.circular(
-                                            5,
-                                          ),
+                                          borderRadius: BorderRadius.circular(5),
                                         ),
                                         child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                            horizontal: 6,
-                                          ),
+                                          padding: const EdgeInsets.symmetric(horizontal: 6),
                                           child: Text(
                                             widget.year,
-                                            style: TextStyle(
-                                              color: Colors.white,
-                                              fontSize: 12,
-                                            ),
+                                            style: TextStyle(color: Colors.white, fontSize: 12),
                                           ),
                                         ),
                                       ),
@@ -364,9 +355,7 @@ class _HistoryCardState extends State<HistoryCard>
                                           ),
                                           Text(
                                             widget.location,
-                                            style: TextStyle(
-                                              color: Colors.grey,
-                                            ),
+                                            style: TextStyle(color: Colors.grey),
                                           ),
                                         ],
                                       ),
@@ -385,12 +374,8 @@ class _HistoryCardState extends State<HistoryCard>
                                     height: 70,
                                     width: 100,
                                     child: ClipRRect(
-                                      borderRadius:
-                                          BorderRadiusGeometry.circular(10),
-                                      child: Image.asset(
-                                        widget.image,
-                                        fit: BoxFit.cover,
-                                      ),
+                                      borderRadius: BorderRadiusGeometry.circular(10),
+                                      child: Image.asset(widget.image, fit: BoxFit.cover),
                                     ),
                                   ),
                                 ],
