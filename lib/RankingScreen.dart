@@ -293,6 +293,144 @@ class _RankingScreenState extends State<RankingScreen> {
                           ),
                         ),
                       ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 8.0),
+                        child: SizedBox(
+                          width: 400,
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Color(0xff051632),
+                              border: BoxBorder.all(
+                                color: Color(0xff102143),
+                                width: 1,
+                              ),
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                children:
+                                    [
+                                          Text(
+                                            "排名",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          Text(
+                                            "學校",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          Text(
+                                            "金",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          Text(
+                                            "銀",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          Text(
+                                            "銅",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                          Text(
+                                            "總計",
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ]
+                                        .map(
+                                          (i) =>
+                                              Expanded(child: Center(child: i)),
+                                        )
+                                        .toList(),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                      ...List.generate(
+                        (ranking["rankings"] as List<dynamic>).length,
+                        (index) {
+                          return Padding(
+                            padding: const EdgeInsets.only(top: 8.0),
+                            child: SizedBox(
+                              width: 400,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  color: Color(0xff051632),
+                                  border: BoxBorder.all(
+                                    color: Color(0xff102143),
+                                    width: 1,
+                                  ),
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(4.0),
+                                  child: Row(
+                                    children: [
+                                      Text(
+                                        ranking["rankings"][index]["rank"]
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 25,
+                                        ),
+                                      ),
+                                      Text(
+                                        ranking["rankings"][index]["unitName"]
+                                            .toString(),
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                      Text(
+                                        ranking["rankings"][index]["gold"]
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.yellow,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      Text(
+                                        ranking["rankings"][index]["silver"]
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.grey,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      Text(
+                                        ranking["rankings"][index]["bronze"]
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.brown,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                      Text(
+                                        ranking["rankings"][index]["total"]
+                                            .toString(),
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 20,
+                                        ),
+                                      ),
+                                    ].map((i) => Expanded(child: Center(child: i))).toList(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        },
+                      ),
                     ],
                   ),
                 ),
